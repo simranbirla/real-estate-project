@@ -1,0 +1,107 @@
+@import '../../responsive.scss';
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+
+    a {
+        transition: all ease 0.4s;
+
+        &:hover {
+        scale: 1.05;
+        }
+    }
+
+    .left-side {
+        flex: 3;
+        display: flex;
+        gap: 50px;
+        align-items: center;
+
+        @include sm {
+            a:not(:first-child) {
+                display: none;
+            }
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+
+            span {
+
+                @include md {
+                    display: none;
+                }
+
+                @include sm {
+                    display: initial
+                }
+            }
+        }
+
+
+    }
+
+    .right-side {
+       
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 2;
+        background-color: #7fa1c325;
+
+        @include sm {
+            a {
+                display: none;
+            }
+        }
+
+        a {
+            margin: 0 20px;
+            padding: 12px 24px;
+        }
+
+        .sign-up {
+            background-color: #7FA1C3;
+        }
+
+    }
+
+    .menu-button {
+        display: none;
+        cursor: pointer;
+        font-size: 30px;
+        color: white;
+
+        @include sm {
+            display: block;
+            z-index: 100;
+        }
+    }
+    
+    .horizontal-nav {
+        position: absolute;
+        top:0;
+        right: 0;
+        width: 50%;
+        height: 100vh;
+        background-color: #6482AD;
+        display: none;
+        
+        @include sm {
+            padding-top: 100px;
+            color: white;
+            font-size: 22px;
+            font-size: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: center;
+
+        }
+      
+    }
+}
