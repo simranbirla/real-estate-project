@@ -1,7 +1,10 @@
+import { useState } from "react";
 import "./navbar.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <nav>
       <div className="left-side">
@@ -23,11 +26,14 @@ export default function Navbar() {
         </a>
       </div>
 
-      <div className="menu-button">
+      <div
+        className={`menu-button ${isOpen ? "open" : ""}`}
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
         <GiHamburgerMenu />
       </div>
 
-      <div className="horizontal-nav">
+      <div className={`horizontal-nav ${isOpen ? "open" : ""}`}>
         <a href="/">Home</a>
         <a href="/contact">Contact</a>
         <a href="/agents">Agents</a>

@@ -15,6 +15,7 @@ nav {
     }
 
     .left-side {
+        height: 100%;
         flex: 3;
         display: flex;
         gap: 50px;
@@ -51,7 +52,8 @@ nav {
         align-items: center;
         justify-content: flex-end;
         flex: 2;
-        background-color: #7fa1c325;
+        background-color: #e9f4ff;
+        height: 100%;
 
         @include sm {
             a {
@@ -74,33 +76,42 @@ nav {
         display: none;
         cursor: pointer;
         font-size: 30px;
-        color: white;
+        color: black;
+
+        &.open {
+            color: white;
+        }
 
         @include sm {
+
+
             display: block;
             z-index: 100;
         }
     }
     
     .horizontal-nav {
+        display: flex;
+        color: white;
+        font-size: 22px;
+        font-size: 500;
+        gap: 50px;
+        align-items: center;
+        padding-top: 100px;
+        flex-direction: column;
+        transition: all ease 0.3s;
         position: absolute;
         top:0;
-        right: 0;
+        right: -50%;
         width: 50%;
         height: 100vh;
         background-color: #6482AD;
-        display: none;
         
         @include sm {
-            padding-top: 100px;
-            color: white;
-            font-size: 22px;
-            font-size: 500;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-            align-items: center;
-
+            &.open{
+            right: 0px;
+    
+            }
         }
       
     }

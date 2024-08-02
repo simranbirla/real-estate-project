@@ -1,0 +1,21 @@
+.home {
+    display: flex;
+    height: 100%;
+
+    .left-side {
+        flex: 3;
+    }
+
+
+    .right-side {
+        flex: 2;
+        background-color: #e9f4ff;
+        position: relative;
+
+        img {
+            position: absolute;
+            left: -35%;
+            width: 130%;
+        }
+    }
+}
