@@ -1,17 +1,22 @@
 import HomePage from "./components/home/HomePage";
-import Navbar from "./components/navbar/Navbar";
-import "./layout.scss";
+import Layout from "./components/layout/Layout";
+import List from "./components/list/List";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
+import SingleProp from "./components/prop/SingleProp";
 
 function App() {
   return (
-    <div className="layout">
-      <div className="navigation">
-        <Navbar />
-      </div>
-      <div className="content">
-        <HomePage />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/list" element={<List />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/property/:id" element={<SingleProp />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
