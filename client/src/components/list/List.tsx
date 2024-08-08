@@ -11,8 +11,19 @@ export default function List() {
           <ListFilter />
         </div>
         <div className="listCards">
-          {listData.map((ld) => (
-            <Card key={ld.id} />
+          {listData.map((data) => (
+            <Card
+              key={data.id}
+              img={data.img}
+              id={data.id}
+              address={data.address}
+              bathroom={data.bathroom}
+              bedroom={data.bedroom}
+              title={data.title}
+              latitude={data.latitude}
+              longitude={data.longitude}
+              price={data.price}
+            />
           ))}
         </div>
       </div>

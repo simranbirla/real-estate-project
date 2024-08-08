@@ -1,12 +1,21 @@
-.list {
-    display: flex;
+.list {display: flex;
     height: 100%;
 
     .listContainer {
         flex: 3;
+        overflow-y: scroll;
 
         .listFilter {
             padding-right: 50px;
+
+        }
+
+        .listCards {
+            padding-right: 50px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+            gap: 20px;
         }
     }
 
