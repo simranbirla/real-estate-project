@@ -1,21 +1,64 @@
+@import "../../responsive.scss";
+
 .home {
     display: flex;
     height: 100%;
 
     .left-side {
         flex: 3;
+        z-index:2;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        gap:40px;
+        padding: 0 40px;
+
+
+        .title {
+                font-size: 3em;
+                font-weight: 600;
+                color: #134B70;
+            }
+        
+            .sub-title {
+                font-size: 16px;
+            }
+        
+            .stats {
+                display: flex;
+                font-weight: 700;
+                font-size: 2em;
+                justify-content: space-between;
+        
+                .stats-details {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                span  {
+                    font-weight: 300;
+                    font-size: 14px;
+                }
+            }
+
+        
+        }
     }
 
 
     .right-side {
+
+        @include md {
+            display: none;
+        }
+
         flex: 2;
         background-color: #e9f4ff;
-        position: relative;
 
         img {
-            position: absolute;
-            left: -35%;
             width: 130%;
+            margin-left:-20%
         }
     }
 }

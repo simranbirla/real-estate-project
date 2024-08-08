@@ -21,8 +21,16 @@
         max-width: 640px ;
 }
 
+.navigation {
+    z-index: 5;
+}
+
 .content {
     height: calc(100vh - 100px);
+
+    @include sm {
+        margin-top: 60px ;
+    }
    }
 
 }

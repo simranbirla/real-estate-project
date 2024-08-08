@@ -46,8 +46,8 @@ nav {
 
     }
 
+   
     .right-side {
-       
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -72,6 +72,13 @@ nav {
 
     }
 
+    @include sm {
+        .right-side {
+            background-color: transparent;
+        }
+    }
+
+
     .menu-button {
         display: none;
         cursor: pointer;
@@ -83,14 +90,13 @@ nav {
         }
 
         @include sm {
-
-
             display: block;
             z-index: 100;
         }
     }
     
     .horizontal-nav {
+        z-index: 5;
         display: flex;
         color: white;
         font-size: 22px;
