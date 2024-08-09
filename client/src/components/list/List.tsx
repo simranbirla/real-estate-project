@@ -1,6 +1,7 @@
 import { listData } from "../../dummyData";
 import Card from "../card/Card";
 import ListFilter from "../listFilter/ListFilter";
+import Map from "../map/Map";
 import "./list.scss";
 
 export default function List() {
@@ -27,7 +28,9 @@ export default function List() {
           ))}
         </div>
       </div>
-      <div className="mapContainer">Map</div>
+      <div className="mapContainer">
+        <Map places={listData} />
+      </div>
     </div>
   );
 }
