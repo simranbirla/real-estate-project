@@ -1,0 +1,78 @@
+.prop {
+    display: flex;
+    height: 100%;
+
+    .details {
+        flex: 3;
+
+        .wrapper {
+            padding-right: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .info{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                
+              .top {
+                display: flex;
+                justify-content: space-between;
+
+                .post {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: column;
+
+                   h1 {
+                    font-weight: 500;
+                   }
+
+                   .address {
+                    color: #777;
+                   }
+
+                   .price {
+                    font-size: 18px;
+                    font-weight: 800;
+                    background-color: #e9f4ff;
+                    width: max-content;
+                    padding: 10px;
+                   }
+                }
+
+                .user {
+                    background-color: #e9f4ffc4;
+                    padding: 30px;
+                    text-align: center;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        margin: auto;
+                    }
+
+                    p {
+                        text-align: center;
+                    }
+                }
+              }
+            }
+        }
+
+    }
+
+
+    .features {
+        flex: 2;
+        height: 100%;
+        background-color: aquamarine;
+
+        .wrapper {
+            padding: 0 20px;
+        }
+    }
+}
