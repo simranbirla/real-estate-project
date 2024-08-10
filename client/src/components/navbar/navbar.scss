@@ -1,10 +1,12 @@
 @import '../../responsive.scss';
 
 nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
     height: 100px;
     align-items: center;
+    overflow: hidden;
 
     a {
         transition: all ease 0.4s;
@@ -116,7 +118,6 @@ nav {
         @include sm {
             &.open{
             right: 0px;
-    
             }
         }
       
