@@ -48,13 +48,13 @@ export default function Card({
           <div className="info">
             <p className="tag">
               <span>
-                <LuBath />
+                <FaBed />
               </span>
               {bedroom} bedroom
             </p>
 
             <p className="tag">
-              <FaBed />
+              <LuBath />
               {bathroom} bathroom
             </p>
           </div>

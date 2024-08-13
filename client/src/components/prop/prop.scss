@@ -69,10 +69,105 @@
     .features {
         flex: 2;
         height: 100%;
-        background-color: aquamarine;
+        background-color: #e9f4ff;
 
         .wrapper {
-            padding: 0 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .info {
+                .title {
+                    margin: 8px 0;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+
+                .generalContainer {
+                  display: flex;
+                  flex-direction: column;
+                  background-color: #fff;
+                  padding: 20px;
+                  gap: 20px;
+
+
+                  .container {
+                    display: flex;
+                    gap: 10px;
+
+                    h3 {
+                        font-size: 16px;
+                    }
+                  }
+                }
+
+                .roomContainer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .room {
+                        display: flex;
+                        padding: 10px;
+                        gap: 10px;
+                        background-color: #fff;
+                        align-items: center;
+                    }
+                }
+
+                .placeContainer {
+                    display: flex;
+                    background-color: #fff;
+                    justify-content: space-between;
+                    padding: 20px;
+
+                    .places {
+                        display: flex;
+                        gap: 10px;
+                        background-color: #fff;
+                        align-items: center;
+
+                        .sub-text {
+                            font-weight: 600;
+
+                            p {
+                                font-weight: 500;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+
+                .mapContainer {
+                    height: 250px;
+                    width: 100%;
+                }
+            }
+
+            .actions {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap:10px;
+                    padding: 14px 22px;
+                    background-color: #fff;
+                    border: 1px solid #777;
+                    cursor: pointer;
+
+                    svg {
+                        font-size: 20px;
+                    }
+
+                    &:hover {
+                        background-color: #f7fafd;
+                    }
+                }
+            }
         }
     }
 }

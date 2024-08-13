@@ -3,12 +3,15 @@ import "leaflet/dist/leaflet.css";
 import "./map.scss";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
-import { TCardProps } from "../card/Card";
-import PopupMap from "../popup/Popup";
+import { Marker, Popup } from "react-leaflet";
 
-const position = [51.505, -0.09] as LatLngTuple;
-
-export default function Map({ places }: { places: TCardProps[] }) {
+export default function GenericMap({
+  position,
+  address,
+}: {
+  position: LatLngTuple;
+  address: string;
+}) {
   return (
     <MapContainer
       center={position}
@@ -20,17 +23,9 @@ export default function Map({ places }: { places: TCardProps[] }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {places.map((place) => (
-        <PopupMap
-          position={[place.latitude, place.longitude]}
-          key={place.id}
-          id={place.id}
-          title={place.title}
-          img={place.img}
-          price={place.price}
-          bedroom={place.bedroom}
-        />
-      ))}
+      <Marker position={position}>
+        <Popup>{address}</Popup>
+      </Marker>
     </MapContainer>
   );
 }

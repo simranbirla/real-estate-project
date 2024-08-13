@@ -48,13 +48,13 @@
 
 
     .right-side {
+        flex: 2;
+        background-color: #e9f4ff;
+
 
         @include md {
             display: none;
         }
-
-        flex: 2;
-        background-color: #e9f4ff;
 
         img {
             width: 130%;
