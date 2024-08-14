@@ -1,9 +1,13 @@
 import { useState } from "react";
 import "./navbar.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { userData } from "../../dummyData";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const user = true;
 
   return (
     <nav>
@@ -18,12 +22,27 @@ export default function Navbar() {
       </div>
 
       <div className="right-side">
-        <a href="/sign-in" className="sign-in">
-          Sign In
-        </a>
-        <a href="/sign-up" className="sign-up">
-          Sign Up
-        </a>
+        {user ? (
+          <>
+            <div className="user">
+              <img src={userData.img} alt={userData.name} />
+              <p>{userData.name}</p>
+            </div>
+            <Link to="/profile" className="profile-btn">
+              <div className="notif">3</div>
+              Profile
+            </Link>
+          </>
+        ) : (
+          <>
+            <a href="/sign-in" className="sign-in">
+              Sign In
+            </a>
+            <a href="/sign-up" className="sign-up">
+              Sign Up
+            </a>
+          </>
+        )}
       </div>
 
       <div
