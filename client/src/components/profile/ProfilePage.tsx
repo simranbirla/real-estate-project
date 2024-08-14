@@ -1,5 +1,6 @@
 import { listData, userData } from "../../dummyData";
 import Card from "../card/Card";
+import Chat from "../chat/Chat";
 import "./profilePage.scss";
 
 export default function ProfilePage() {
@@ -30,7 +31,9 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <div className="messages">Messages</div>
+      <div className="messagesContainer">
+        <Chat />
+      </div>
     </div>
   );
 }
