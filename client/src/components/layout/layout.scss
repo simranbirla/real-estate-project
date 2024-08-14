@@ -26,7 +26,7 @@
 }
 
 .content {
-   min-height: calc(100vh - 100px);
+   height: calc(100vh - 100px);
 
     @include sm {
         margin-top: 60px ;

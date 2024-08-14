@@ -69,6 +69,12 @@ nav {
                 object-fit: cover;
                 margin: auto;
             }
+
+            p {
+                @include sm {
+                    display: none;
+                }
+            }
             }
 
 

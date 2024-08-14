@@ -4,6 +4,7 @@ import List from "./components/list/List";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import SingleProp from "./components/prop/SingleProp";
+import ProfilePage from "./components/profile/ProfilePage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/list" element={<List />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/property/:id" element={<SingleProp />} />
         </Route>
       </Routes>
