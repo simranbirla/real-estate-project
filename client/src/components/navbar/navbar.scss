@@ -6,7 +6,6 @@ nav {
     justify-content: space-between;
     height: 100px;
     align-items: center;
-    overflow: hidden;
 
     a {
         transition: all ease 0.4s;
@@ -141,7 +140,7 @@ nav {
     
     .horizontal-nav {
         z-index: 5;
-        display: flex;
+        display: none;
         color: white;
         font-size: 22px;
         font-size: 500;
@@ -149,15 +148,16 @@ nav {
         align-items: center;
         padding-top: 100px;
         flex-direction: column;
-        transition: all ease 0.3s;
+        transition: all ease 0.6s;
         position: absolute;
         top:0;
-        right: -50%;
+        right: -80%;
         width: 50%;
         height: 100vh;
         background-color: #6482AD;
-        
         @include sm {
+            display: flex;
+
             &.open{
             right: 0px;
             }
