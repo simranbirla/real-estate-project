@@ -118,3 +118,92 @@ export const userData = {
   name: "John Doe",
   img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 };
+
+export const texts = [
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+  {
+    user: false,
+    message: "Lorem ipsum",
+    time: "9.01am",
+  },
+
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+
+  {
+    user: false,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+
+  {
+    user: false,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+
+  {
+    user: true,
+    message: "Lorem ipsum",
+    time: "9.00am",
+  },
+];

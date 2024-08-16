@@ -41,5 +41,72 @@
 
     .chatBox {
         flex: 1;
+
+        .top {
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap:20px;
+            background-color: #7FA1C3;
+            padding: 10px;
+
+
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 10px;
+                cursor: pointer;
+            }
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .middle {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 0 20px;
+            height: auto;
+        overflow-y: scroll;
+
+
+            .text {
+
+                width: 50%;
+
+                &.own {
+                    align-self: flex-end;
+                    text-align: right;
+                }
+    
+                span {
+                    font-size: 10px;
+                    background-color: #e9f4ff;
+                }
+            }
+
+            
+        }
+
+        .bottom {
+            display: flex;
+
+            input {
+                flex: 3;
+                padding: 15px;
+            }
+
+            button {
+                flex: 1;
+                border: 1px solid #ddd;
+                cursor: pointer;
+                background-color: #7FA1C3;
+            }
+        }
     }
 }
