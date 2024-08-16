@@ -8,10 +8,16 @@
         flex: 3;
         z-index:2;
         align-self: center;
-        display: flex;
-        flex-direction: column;
-        gap:40px;
-        padding: 0 40px;
+
+
+        .wrapper {
+            padding: 0 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap:40px;
+    
+        }
 
 
         .title {
