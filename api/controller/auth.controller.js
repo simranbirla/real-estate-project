@@ -1,6 +1,17 @@
+import bcrypt from 'bcrypt';
+
 export const createUser = async (req, res) => {
+
+    const { username, password, email } = req.body
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    console.log(hashedPassword)
+
+
+
     return res.json({
-        message: "Register"
+        message: "User is registered"
     })
 }
 
