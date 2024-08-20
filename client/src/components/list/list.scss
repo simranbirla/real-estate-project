@@ -1,5 +1,12 @@
-.list {display: flex;
+@import '../../responsive.scss';
+
+.list {
+    display: flex;
     height: 100%;
+
+    @include md {
+        flex-direction: column;
+    }
 
     .listContainer {
         flex: 3;

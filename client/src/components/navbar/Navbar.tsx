@@ -56,6 +56,7 @@ export default function Navbar() {
         <a href="/">Home</a>
         <a href="/contact">Contact</a>
         <a href="/agents">Agents</a>
+        <a href="/profile">Profile</a>
         <a href="/sign-in">Sign In</a>
         <a href="/sign-up">Sign Up</a>
       </div>
