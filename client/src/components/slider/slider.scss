@@ -90,6 +90,7 @@
 
     @include sm {
       flex: 1;
+      display: none;
     }
 
     img {
