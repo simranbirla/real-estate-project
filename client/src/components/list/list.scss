@@ -1,36 +1,5 @@
-@import '../../responsive.scss';
-
-.list {
-    display: flex;
-    height: 100%;
-
-    @include md {
-        flex-direction: column;
-    }
-
-    .listContainer {
-        flex: 3;
-        overflow-y: scroll;
-
-        .listFilter {
-            padding-right: 50px;
-
-        }
-
-        .listCards {
-            padding-right: 50px;
-            display: flex;
-            flex-direction: column;
-            margin-top: 30px;
-            gap: 20px;
-        }
-    }
-
-
-    .mapContainer {
-        flex: 2;
-        background-color: #e9f4ff;
-        height: 100%;
-
-    }
+.list{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }

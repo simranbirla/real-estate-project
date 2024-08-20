@@ -1,167 +1,154 @@
-@import '../../responsive.scss';
+@import "../../responsive.scss";
 
 nav {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    height: 100px;
-    align-items: center;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    a {
-        transition: all ease 0.4s;
-
-        &:hover {
-        scale: 1.05;
-        }
-    }
-
-    .left-side {
-        height: 100%;
-        flex: 3;
-        display: flex;
-        gap: 50px;
-        align-items: center;
-
-        @include sm {
-            a:not(:first-child) {
-                display: none;
-            }
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-
-            span {
-
-                @include md {
-                    display: none;
-                }
-
-                @include sm {
-                    display: initial
-                }
-            }
-        }
-
-
-    }
-
-   
-    .right-side {
-        display: flex;
-        align-items: center;justify-content: flex-end;
-            flex: 2;
-            background-color: #e9f4ff;
-            height: 100%;
-        
-
-            .user {
-                display: flex;
-                gap: 20px;
-                align-items: center;
-                font-weight: bold;
-            img {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                object-fit: cover;
-                margin: auto;
-            }
-
-            p {
-                @include sm {
-                    display: none;
-                }
-            }
-            }
-
-
-            .profile-btn {
-                background-color:#7FA1C3 ;
-                font-weight: bold;
-                cursor: pointer;
-                position: relative;
-
-                .notif {
-                    position: absolute;
-                    top: -10px;
-                    right: -10px;
-                    background-color: rgb(251, 100, 100);
-                    color: white;
-                    height: 30px;
-                    width: 30px;
-                   display: flex;
-                   align-items: center;
-                   justify-content: center;
-                    border-radius: 50%;
-                }
-            }
-
-            @include sm {
-                a {
-                    display: none;
-            }
-        }
-
-        a {
-            margin: 0 20px;
-            padding: 12px 24px;
-        }
-
-        .sign-up {
-            background-color: #7FA1C3;
-        }
-
-    }
+  a {
+    transition: all 0.4s ease;
 
     @include sm {
-        .right-side {
-            background-color: transparent;
-        }
+      display: none;
     }
 
+    &:hover {
+      scale: 1.05;
+    }
+  }
 
-    .menu-button {
-        display: none;
+  .left {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 28px;
+      }
+
+      span {
+        @include md {
+          display: none;
+        }
+
+        @include sm {
+          display: initial;
+        }
+      }
+    }
+  }
+  .right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #fcf5f3;
+    height: 100%;
+
+    @include md {
+      background-color: transparent;
+    }
+
+    a {
+      padding: 12px 24px;
+      margin: 20px;
+    }
+
+    .user{
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+
+      img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      span{
+        @include sm{
+          display: none;
+        }
+      }
+
+      .profile{
+        padding: 12px 24px;
+        background-color: #fece51;
         cursor: pointer;
-        font-size: 30px;
-        color: black;
-
-        &.open {
-            color: white;
+        border: none;
+        position: relative;
+        
+        .notification{
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background-color: red;
+          color: white;
+          border-radius: 50%;
+          width: 26px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        @include sm {
-            display: block;
-            z-index: 100;
-        }
+      }
     }
-    
-    .horizontal-nav {
-        z-index: 5;
-        display: none;
-        color: white;
-        font-size: 22px;
-        font-size: 500;
-        gap: 50px;
-        align-items: center;
-        padding-top: 100px;
-        flex-direction: column;
-        transition: all ease 0.6s;
-        position: absolute;
-        top:0;
-        right: -80%;
-        width: 50%;
-        height: 100vh;
-        background-color: #6482AD;
-        @include sm {
-            display: flex;
 
-            &.open{
-            right: 0px;
-            }
-        }
-      
+    .register {
+      background-color: #fece51;
     }
+
+    .menuIcon {
+      display: none;
+      z-index: 999;
+
+      img {
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+      }
+
+      @include sm {
+        display: inline;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      top: 0;
+      right: -50%;
+      background-color: black;
+      color: white;
+      height: 100vh;
+      width: 50%;
+      transition: all 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+
+      &.active {
+        right: 0;
+      }
+
+      @include sm {
+        a {
+          display: initial;
+        }
+      }
+    }
+  }
 }
