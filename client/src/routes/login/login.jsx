@@ -23,6 +23,8 @@ function Login() {
         username, password
       })
 
+      localStorage.setItem("user", JSON.stringify(result.data?.user))
+
       navigate("/")
     } catch (e) {
       console.log(e)

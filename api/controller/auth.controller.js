@@ -71,7 +71,9 @@ export const login = async (req, res) => {
 
 
 
-        const cookie = res.cookie('access_token', token, {
+        const { password: userPassword, ...userInfo } = user;
+
+        res.cookie('access_token', token, {
             maxAge: 90000,
             httpOnly: true
         })
@@ -79,9 +81,7 @@ export const login = async (req, res) => {
 
         return res.status(200).json({
             message: "User Logged In!",
-            user: {
-                username, email: user.email
-            }
+            user: userInfo
         })
     } catch (e) {
         console.log(e)
