@@ -16,6 +16,8 @@ export const verifyToken = async (req, res, next) => {
                     error: "Token not valid"
                 })
             }
+
+            req.userId = payload.data.id
             next()
         });
     } catch (e) {

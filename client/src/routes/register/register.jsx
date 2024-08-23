@@ -2,11 +2,17 @@ import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import apiRequest from '../../lib/apiRequest.js';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 function Register() {
 
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false);
+
+  const { user, updateUser } = useContext(AuthContext)
+
+  console.log(user)
 
   const navigate = useNavigate()
 
