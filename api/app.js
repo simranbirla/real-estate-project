@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth.js'
 import postRouter from './routes/post.js'
+import userRouter from './routes/user.js'
 import { verifyToken } from './middlewares/auth.middleware.js';
 
 dotenv.config()
@@ -23,6 +24,8 @@ app.use('/test', verifyToken, (req, res) => {
 
 app.use('/auth', authRouter)
 app.use('/post', postRouter)
+app.use('/user', userRouter)
+
 
 app.listen(3000, () => {
     console.log("Started Listening")
