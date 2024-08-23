@@ -1,52 +1,69 @@
 import HomePage from "./routes/homePage/homePage";
 import {
-  createBrowserRouter,
-  RouterProvider,
+  BrowserRouter,
+  Route,
+  Routes,
 } from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
-import Layout from "./routes/layout/layout";
+import Layout, { ProtectedRoute } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
 import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
+import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/register";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children:[
-        {
-          path:"/",
-          element:<HomePage/>
-        },
-        {
-          path:"/list",
-          element:<ListPage/>
-        },
-        {
-          path:"/:id",
-          element:<SinglePage/>
-        },
-        {
-          path:"/profile",
-          element:<ProfilePage/>
-        },
-        {
-          path:"/login",
-          element:<Login/>
-        },
-        {
-          path:"/register",
-          element:<Register/>
-        }
-      ]
-    }
-  ]);
-
   return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          } />
 
-    <RouterProvider router={router}/>
+          <Route path="/login" element={
+            <Layout>
+              <Login />
+            </Layout>
+          } />
+          <Route path="/list" element={
+            <Layout>
+              <ListPage />
+            </Layout>
+          } />
+
+          <Route path="/property/:id" element={
+            <Layout>
+              <SinglePage />
+            </Layout>
+          } />
+
+          <Route path="/register" element={
+            <Layout>
+              <Register />
+            </Layout>
+          } />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/update-profile"
+            element={
+              <ProtectedRoute>
+                <ProfileUpdatePage />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

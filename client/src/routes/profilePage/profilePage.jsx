@@ -31,14 +31,14 @@ function ProfilePage() {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <button onClick={() => navigate("/update-profile")}>Update Profile</button>
           </div>
           <div className="info">
             <span>
               Avatar:
               <img
                 src={user.avatar || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
-                alt=""
+                alt={user.username}
               />
             </span>
             <span>
