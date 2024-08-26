@@ -1,6 +1,14 @@
 .profileUpdatePage {
   height: 100%;
   display: flex;
+  justify-content: center;
+
+  .loading {
+    font-size: x-large;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 
   .formContainer {
     flex:3;
@@ -11,6 +19,10 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+
+      span {
+       color: rgba(255, 0, 0, 0.591);
+      }
 
       .item {
         display: flex;
