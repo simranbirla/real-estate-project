@@ -27,6 +27,20 @@ app.use('/post', postRouter)
 app.use('/user', userRouter)
 
 
+app.use((err, req, res,) => {
+
+    const statusCode = err.statusCode || 500
+    const error = err.message || "Internal Server Error"
+
+    return res.status(statusCode).json({
+        success: false,
+        message: error
+    })
+
+})
+
+
+
 app.listen(3000, () => {
     console.log("Started Listening")
 })
