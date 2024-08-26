@@ -15,23 +15,15 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 
-
-app.use('/test', verifyToken, (req, res) => {
-    return res.json({
-        message: "done"
-    })
-})
-
 app.use('/auth', authRouter)
 app.use('/post', postRouter)
 app.use('/user', userRouter)
 
+app.use((err, req, res, next) => {
+    const statusCode = err?.statusCode || 500
+    const error = err?.message || "Internal Server Error"
 
-app.use((err, req, res,) => {
-
-    const statusCode = err.statusCode || 500
-    const error = err.message || "Internal Server Error"
-
+    console.log(e)
     return res.status(statusCode).json({
         success: false,
         message: error

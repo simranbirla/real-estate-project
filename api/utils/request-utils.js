@@ -7,7 +7,8 @@ export const successRequest = (res, status, data) => {
 
 export const errorHandler = (message, status) => {
     const error = new Error();
-    error.statusCode = status,
-        error.message = message
-    return message
+    error.statusCode = status;
+    error.message = message
+
+    return error
 }
