@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { DEFAULT_IMAGE } from "../../constants/image";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ function Navbar() {
         {user ? (
           <div className="user">
             <img
-              src={user.avatar || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
+              src={user.avatar || DEFAULT_IMAGE}
               alt=""
             />
             <span>{user.username}</span>

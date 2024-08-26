@@ -79,6 +79,7 @@ export const updateUserById = async (req, res) => {
             data: {
                 username: req.body.username,
                 email: req.body.email,
+                avatar: req.body.avatar,
                 ...passwordObj
             }
         })

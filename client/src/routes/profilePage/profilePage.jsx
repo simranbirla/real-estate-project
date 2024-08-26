@@ -5,6 +5,7 @@ import "./profilePage.scss";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
+import { DEFAULT_IMAGE } from "../../constants/image.js";
 
 function ProfilePage() {
 
@@ -37,7 +38,7 @@ function ProfilePage() {
             <span>
               Avatar:
               <img
-                src={user.avatar || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
+                src={user.avatar || DEFAULT_IMAGE}
                 alt={user.username}
               />
             </span>

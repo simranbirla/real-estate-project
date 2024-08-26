@@ -27,7 +27,9 @@ function Login() {
         username, password
       })
 
-      updateUser(result.data?.user)
+      console.log(result.data)
+
+      updateUser(result.data?.data)
 
       navigate("/")
     } catch (e) {

@@ -1,8 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import apiRequest from "../../lib/apiRequest";
 import "./profileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
+import UploadWidget from "../../components/uploadWidget/UploadWidget.jsx";
+import { DEFAULT_IMAGE } from "../../constants/image";
 
 function ProfileUpdatePage() {
   const { user, updateUser } = useContext(AuthContext)
@@ -11,6 +13,12 @@ function ProfileUpdatePage() {
 
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false);
+  const [avatar, setAvatar] = useState(user.avatar)
+
+
+  useEffect(() => {
+    setAvatar(user.avatar)
+  }, [user])
 
 
   const handleSubmit = async (e) => {
@@ -25,10 +33,10 @@ function ProfileUpdatePage() {
 
 
       const result = await apiRequest.put(`/user/${user.id}`, {
-        email, password, username
+        email, password, username, avatar: avatar
       })
 
-      updateUser(result.data)
+      updateUser(result.data?.data)
 
       navigate("/profile")
 
@@ -72,8 +80,11 @@ function ProfileUpdatePage() {
         </form>
       </div>
         <div className="sideContainer">
-          <img src={user.avatar || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
+          <img src={avatar || DEFAULT_IMAGE}
             alt={user.username} className="avatar" />
+          <UploadWidget uwConfig={{ cloudName: "djuhxxsmh", uploadPreset: "estate", multiple: false, maxImageFileSize: 2000000, folder: "avatars" }}
+            setAvatar={setAvatar}
+          />
         </div>
       </>
       }
