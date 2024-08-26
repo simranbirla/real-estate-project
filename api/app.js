@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
     const statusCode = err?.statusCode || 500
     const error = err?.message || "Internal Server Error"
 
-    console.log(e)
+    console.log(err)
     return res.status(statusCode).json({
         success: false,
         message: error

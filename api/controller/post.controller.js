@@ -5,20 +5,30 @@ export const createPost = async (req, res, next) => {
     try {
         const post = await prisma.post.create({
             data: {
-                ...req.body,
-                userId: req.userId
+                ...req.body.postData,
+                userId: req.userId,
+                postDetails: {
+                    create: {
+                        ...req.body.postDetails
+                    }
+                }
             }
         });
 
         return successRequest(res, 200, post)
     } catch (e) {
+        console.log(e)
         next(e)
     }
 }
 
 export const getPosts = async (req, res, next) => {
     try {
-        const posts = await prisma.post.findMany({});
+        const posts = await prisma.post.findMany({
+            include: {
+                postDetails: true
+            }
+        });
 
         return successRequest(res, 200, posts)
     } catch (e) {
@@ -31,11 +41,14 @@ export const getPostById = async (req, res, next) => {
         const post = await prisma.post.findUnique({
             where: {
                 id: req.params.id
+            },
+            include: {
+                postDetails: true
             }
         });
 
         if (!post) {
-            throw new Error("Cannot find the post")
+            throw errorHandler("Post not found", 404)
         }
 
         return successRequest(res, 200, post)
@@ -50,16 +63,19 @@ export const updatePostById = async (req, res, next) => {
         const post = await prisma.post.findUnique({
             where: {
                 id: req.params.id
+            },
+            include: {
+                postDetails: true,
             }
         });
 
 
         if (!post) {
-            next("Post not found", 404)
+            throw errorHandler('Post not found', 404)
         }
 
         if (post.userId !== req.userId) {
-            next("You are not authorized", 403)
+            throw errorHandler("You are not authorized", 403)
         }
 
         const updatedPost = await prisma.post.update({
@@ -67,7 +83,20 @@ export const updatePostById = async (req, res, next) => {
                 id: req.params.id
             },
             data: {
-                ...req.body
+                ...req.body.postData,
+                postDetails: {
+                    update: {
+                        where: {
+                            id: post.postDetails.id
+                        },
+                        data: {
+                            ...req.body.postDetails
+                        }
+                    }
+                }
+            },
+            include: {
+                postDetails: true
             }
         })
 
@@ -94,6 +123,16 @@ export const deletePostById = async (req, res, next) => {
             next("You are not authorized", 403)
         }
 
+        const deletedPostDetails = await prisma.post.update({
+            where: {
+                id: req.params.id
+            },
+            data: {
+                postDetails: {
+                    deleteMany: {}
+                }
+            }
+        })
         const deletedPost = await prisma.post.delete({
             where: {
                 id: req.params.id
