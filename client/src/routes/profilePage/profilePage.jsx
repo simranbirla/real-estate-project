@@ -2,7 +2,7 @@ import apiRequest from "../../lib/apiRequest.js";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import "./profilePage.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { DEFAULT_IMAGE } from "../../constants/image.js";
@@ -54,7 +54,9 @@ function ProfilePage() {
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <Link to="/add-post">
+              <button>Create New Post</button>
+            </Link>
           </div>
           <List />
           <div className="title">

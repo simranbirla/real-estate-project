@@ -11,6 +11,7 @@ import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/register";
+import NewPostPage from "./routes/newPostPage/newPostPage";
 
 function App() {
   return (
@@ -58,6 +59,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProfileUpdatePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-post"
+            element={
+              <ProtectedRoute>
+                <NewPostPage />
               </ProtectedRoute>
             }
           />

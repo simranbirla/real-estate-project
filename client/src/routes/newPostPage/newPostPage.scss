@@ -1,6 +1,14 @@
 .newPostPage {
   height: 100%;
   display: flex;
+  justify-content: center;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+  }
 
   .formContainer {
     flex: 3;
@@ -14,6 +22,11 @@
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 20px;
+
+        .error {
+          color: rgba(255, 0, 0, 0.591);
+         }
+   
 
         .item {
           width: 30%;

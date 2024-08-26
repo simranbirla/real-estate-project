@@ -1,12 +1,68 @@
+import ReactQuill from 'react-quill'
+import apiRequest from '../../lib/apiRequest';
+import 'react-quill/dist/quill.snow.css'
 import "./newPostPage.scss";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewPostPage() {
+  const [desc, setDesc] = useState("")
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    try {
+      setIsLoading(true)
+      setError(false)
+      e.preventDefault()
+
+      const formData = new FormData(e.target);
+
+      const inputs = Object.fromEntries(formData)
+
+      const result = await apiRequest.post(`/post`, {
+        postData: {
+          address: inputs.address,
+          bathroom: Number(inputs.bathroom),
+          bedroom: Number(inputs.bedroom),
+          city: inputs.city,
+          latitude: inputs.latitude,
+          longitude: inputs.longitude,
+          price: Number(inputs.price),
+          property: inputs.property,
+          title: inputs.title,
+          type: inputs.type
+        },
+        postDetails: {
+          description: desc,
+          school: Number(inputs.school),
+          restaurant: Number(inputs.restaurant),
+          bus: Number(inputs.bus),
+          utilities: inputs.utilities,
+          pet: inputs.pet,
+          income: inputs.income,
+          size: Number(inputs.size),
+        }
+      })
+
+
+      navigate("/list")
+
+    } catch (e) {
+      setError(e.response?.data.error ?? "Error")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="newPostPage">
-      <div className="formContainer">
+      {isLoading ? <div className='loading'>Loading</div> : <> <div className="formContainer">
         <h1>Add New Post</h1>
         <div className="wrapper">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="item">
               <label htmlFor="title">Title</label>
               <input id="title" name="title" type="text" />
@@ -21,6 +77,7 @@ function NewPostPage() {
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>
+              <ReactQuill theme='snow' onChange={setDesc} value={desc} />
             </div>
             <div className="item">
               <label htmlFor="city">City</label>
@@ -93,7 +150,7 @@ function NewPostPage() {
               <input min={0} id="school" name="school" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bus">bus</label>
+              <label htmlFor="bus">Bus</label>
               <input min={0} id="bus" name="bus" type="number" />
             </div>
             <div className="item">
@@ -101,10 +158,12 @@ function NewPostPage() {
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
             <button className="sendButton">Add</button>
+            {error && <span className='error'>{error}</span>}
           </form>
         </div>
       </div>
-      <div className="sideContainer"></div>
+        <div className="sideContainer"></div>
+      </>}
     </div>
   );
 }

@@ -36,7 +36,7 @@ model Post {
   bathroom    Int
   type        Type
   property    Property
-  userId      String      @unique @db.ObjectId
+  userId      String      @db.ObjectId
   user        User        @relation(fields: [userId], references: [id])
   postDetails PostDetail?
   createdAT   DateTime    @default(now())
