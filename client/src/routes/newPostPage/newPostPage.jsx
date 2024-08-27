@@ -48,7 +48,7 @@ function NewPostPage() {
       })
 
 
-      navigate("/list")
+      navigate(`/property/${result.data?.data.id}`)
 
     } catch (e) {
       setError(e.response?.data.error ?? "Error")

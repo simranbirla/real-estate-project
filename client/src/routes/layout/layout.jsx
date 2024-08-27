@@ -1,24 +1,24 @@
 import "./layout.scss";
 import Navbar from "../../components/navbar/Navbar"
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-function Layout({ children }) {
+function Layout() {
   return (
     <div className="layout">
       <div className="navbar">
         <Navbar />
       </div>
       <div className="content">
-        {children}
+        <Outlet />
       </div>
     </div>
   );
 }
 
 
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = () => {
   const { user } = useContext(AuthContext)
 
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ export const ProtectedRoute = ({ children }) => {
         <Navbar />
       </div>
       <div className="content">
-        {children}
+        <Outlet />
       </div>
     </div>
   );
