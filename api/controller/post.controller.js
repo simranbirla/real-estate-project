@@ -26,7 +26,8 @@ export const getPosts = async (req, res, next) => {
     try {
         const posts = await prisma.post.findMany({
             include: {
-                postDetails: true
+                postDetails: true,
+                user: true,
             }
         });
 
@@ -43,7 +44,8 @@ export const getPostById = async (req, res, next) => {
                 id: req.params.id
             },
             include: {
-                postDetails: true
+                postDetails: true,
+                user: true
             }
         });
 
