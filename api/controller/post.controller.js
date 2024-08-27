@@ -24,10 +24,35 @@ export const createPost = async (req, res, next) => {
 
 export const getPosts = async (req, res, next) => {
     try {
+        const query = req.query
+
+
         const posts = await prisma.post.findMany({
             include: {
                 postDetails: true,
                 user: true,
+            },
+            where: {
+                AND: [
+                    {
+                        city: query?.city || undefined,
+                    },
+                    {
+                        type: query?.type || undefined,
+                    },
+                    {
+                        property: query?.property || undefined,
+                    },
+                    {
+                        bedroom: parseInt(query?.bedroom) || undefined,
+                    },
+                    {
+                        price: {
+                            gte: parseInt(query?.minPrice) || 0,
+                            lte: parseInt(query?.maxPrice) || 10000000,
+                        }
+                    }
+                ]
             }
         });
 

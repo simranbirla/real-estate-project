@@ -12,8 +12,6 @@ function Register() {
 
   const { user, updateUser } = useContext(AuthContext)
 
-  console.log(user)
-
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -26,8 +24,6 @@ function Register() {
       const username = formData.get("username")
       const email = formData.get("email")
       const password = formData.get("password")
-
-      console.log(username, email, password)
 
       const result = await apiRequest.post("/auth/register", {
         username, email, password
