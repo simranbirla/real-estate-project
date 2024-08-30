@@ -1,7 +1,8 @@
 import prisma from '../lib/prisma.js';
 import bcrypt from 'bcrypt';
+import { errorHandler, successRequest } from '../utils/request-utils.js';
 
-export const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res, next) => {
     try {
         const users = await prisma.user.findMany()
 
@@ -18,7 +19,7 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
-export const getUserById = async (req, res) => {
+export const getUserById = async (req, res, next) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
@@ -38,15 +39,11 @@ export const getUserById = async (req, res) => {
             data: user
         })
     } catch (e) {
-        console.log(e)
-        return res.status(500).json({
-            success: false,
-            error: "Something went wrong"
-        })
+        next(e)
     }
 }
 
-export const updateUserById = async (req, res) => {
+export const updateUserById = async (req, res, next) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
@@ -89,15 +86,11 @@ export const updateUserById = async (req, res) => {
         })
 
     } catch (e) {
-        console.log(e)
-        return res.status(500).json({
-            success: false,
-            error: "Something went wrong"
-        })
+        next(e)
     }
 }
 
-export const deleteUserById = async (req, res) => {
+export const deleteUserById = async (req, res, next) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
@@ -123,10 +116,60 @@ export const deleteUserById = async (req, res) => {
         })
 
     } catch (e) {
-        console.log(e)
-        return res.status(500).json({
-            success: false,
-            error: "Something went wrong"
+        next(e)
+    }
+}
+
+export const savePosts = async (req, res, next) => {
+    try {
+        const post = await prisma.post.findUnique({
+            where: {
+                id: req.body.postId
+            }
         })
+
+        if (!post) {
+            throw errorHandler("Post not found", 404)
+        }
+
+        const savedPost = await prisma.savedPost.findUnique({
+            where: {
+                userId_postId: {
+                    userId: req.userId,
+                    postId: req.body.postId
+                }
+            }
+        })
+
+
+        if (savedPost) {
+            await prisma.savedPost.delete({
+                where: {
+                    userId_postId: {
+                        userId: req.userId,
+                        postId: req.body.postId
+                    }
+                }
+            })
+
+            return successRequest(res, 201, {
+                savedPost: false
+            })
+        } else {
+            const savedPosts = await prisma.savedPost.create({
+                data: {
+                    userId: req.userId,
+                    postId: req.body.postId
+                }
+            })
+            return successRequest(res, 200, {
+                savedPost: true,
+            })
+        }
+
+
+    } catch (e) {
+        console.log(e)
+        next(e)
     }
 }

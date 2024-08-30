@@ -1,4 +1,5 @@
 import prisma from '../lib/prisma.js';
+import jwt from 'jsonwebtoken'
 import { errorHandler, successRequest } from '../utils/request-utils.js';
 
 export const createPost = async (req, res, next) => {
@@ -78,7 +79,40 @@ export const getPostById = async (req, res, next) => {
             throw errorHandler("Post not found", 404)
         }
 
-        return successRequest(res, 200, post)
+        const token = req.cookies?.access_token;
+
+        if (token) {
+            return jwt.verify(token, process.env.JWT_SECRET, async function (err, payload) {
+                if (err) {
+                    throw errorHandler("Something went wrong", 401)
+                }
+
+
+                const savedPost = await prisma.savedPost.findUnique({
+                    where: {
+                        userId_postId: {
+                            userId: payload.data.id,
+                            postId: req.params.id
+                        }
+                    }
+                })
+
+                if (savedPost) {
+                    return successRequest(res, 200, {
+                        ...post, isSaved: true
+                    })
+                } else {
+                    return successRequest(res, 200, {
+                        ...post, isSaved: false
+                    })
+                }
+            });
+        }
+
+
+        return successRequest(res, 200, {
+            ...post, isSaved: false,
+        })
     } catch (e) {
         console.log("error", e)
         next(e)

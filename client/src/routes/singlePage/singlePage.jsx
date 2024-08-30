@@ -1,14 +1,44 @@
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
-import { singlePostData, userData } from "../../lib/dummydata";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { DEFAULT_IMAGE } from "../../constants/image";
 import DOMPurify from 'dompurify'
+import { useContext, useEffect, useState } from "react";
+import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
 
 
 function SinglePage() {
   const post = useLoaderData()
+  const [isSaved, setIsSaved] = useState(false)
+  const { id } = useParams();
+  const { user } = useContext(AuthContext)
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+
+
+  useEffect(() => {
+    setIsSaved(post.isSaved)
+  }, [post])
+
+
+  const handleSave = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const savedPost = await apiRequest.post(`/user/save-post`, {
+        postId: id
+      })
+
+      setIsSaved(savedPost.data?.data?.savedPost)
+    } catch (e) {
+      setError(e.response?.data?.error ?? "Error")
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <div className="singlePage">
@@ -103,16 +133,17 @@ function SinglePage() {
           <div className="mapContainer">
             <Map items={[post]} position={[post.latitude, post.longitude]} />
           </div>
-          <div className="buttons">
+          {user && <div className="buttons">
             <button>
               <img src="/chat.png" alt="" />
               Send a Message
             </button>
-            <button>
+            {isLoading ? <div>Loading</div> : <button onClick={handleSave} style={{ backgroundColor: isSaved ? "#fece51" : "white" }} >
               <img src="/save.png" alt="" />
-              Save the Place
-            </button>
-          </div>
+              {isSaved ? "Place Saved" : "Save the Place"}
+            </button>}
+          </div>}
+          {error && <span>{error}</span>}
         </div>
       </div>
     </div>
