@@ -24,3 +24,15 @@ export const listLoader = ({ request, params }) => {
         console.log(e)
     }
 }
+
+export const profileListLoader = () => {
+    try {
+        const promise = apiRequest.get(`/user/post/get-post`)
+
+        return defer({
+            listResponse: promise
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}

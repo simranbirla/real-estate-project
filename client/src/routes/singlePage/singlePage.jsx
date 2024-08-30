@@ -28,7 +28,7 @@ function SinglePage() {
     try {
       setIsLoading(true)
       setError("")
-      const savedPost = await apiRequest.post(`/user/save-post`, {
+      const savedPost = await apiRequest.post(`/user/post/save-post`, {
         postId: id
       })
 

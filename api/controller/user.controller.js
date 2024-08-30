@@ -173,3 +173,32 @@ export const savePosts = async (req, res, next) => {
         next(e)
     }
 }
+
+export const getAllPostsByUserId = async (req, res, next) => {
+    try {
+        const posts = await prisma.post.findMany({
+            where: {
+                userId: req.userId
+            }
+        })
+
+        const savedPosts = await prisma.savedPost.findMany({
+            where: {
+                userId: req.userId,
+            },
+            include: {
+                post: true
+            }
+        })
+
+
+        return successRequest(res, 200, {
+            posts,
+            savedPosts
+        })
+
+    } catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
